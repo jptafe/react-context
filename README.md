@@ -72,3 +72,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 LINKS
 https://kentcdodds.com/blog/how-to-use-react-context-effectively
+https://codesandbox.io/s/usecontext-v36ew?file=/src/ComponentB.js
