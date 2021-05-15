@@ -1,4 +1,6 @@
-import React from 'react';
+import { React, useState } from 'react';
+import { countContext } from "./context/countcontext.js";
+
 import './App.css';
 
 import About from './routes/about';
@@ -17,37 +19,27 @@ import {
     Redirect
 } from "react-router-dom";
 
-import CountContext from './context/countcontext'
-
 function App() {
+  const [context, setContext] = useState(0);
+  //const [context, setContext] = useContext(countContext);
+
   return (
     <div className="App">
-      <Header/>
-      <Nav/>
-      <Router>
-        <Switch>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/panel">
-            <Panel />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/">
-            <Redirect to="/home" />
-          </Route>
-        </Switch>
-      </Router>
+      <countContext.Provider value={[context, setContext]}>
+        <Header/>
+        <Nav/>
+        <Router>
+          <Switch>
+            <Route path="/home" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/panel" component={Panel} />
+            <Route path="/register" component={Register} />
+            <Route exact path='/' render={ () => <Redirect to='/route1' /> } />
+          </Switch>
+        </Router>
+      </countContext.Provider>
     </div>
   );
 }
-
 export default App;
